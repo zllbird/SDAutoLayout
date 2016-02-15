@@ -384,6 +384,8 @@
     if (!_widthEqualToHeight) {
         _widthEqualToHeight = ^() {
             weakSelf.widthEqualHeight = [SDAutoLayoutModelItem new];
+            // 主动触发一次赋值操作
+            weakSelf.needsAutoResizeView.height = weakSelf.needsAutoResizeView.height;
             return weakSelf;
         };
     }
@@ -397,6 +399,8 @@
     if (!_heightEqualToWidth) {
         _heightEqualToWidth = ^() {
             weakSelf.heightEqualWidth = [SDAutoLayoutModelItem new];
+            // 主动触发一次赋值操作
+            weakSelf.needsAutoResizeView.width = weakSelf.needsAutoResizeView.width;
             return weakSelf;
         };
     }
@@ -685,6 +689,9 @@
     if (model) {
         [self.superview.autoLayoutModelsArray removeObject:model];
         [self setOwnLayoutModel:nil];
+    }
+    if (self.autoHeightRatioValue) {
+        self.autoHeightRatioValue = nil;
     }
     return [self sd_layout];
 }
@@ -1034,6 +1041,10 @@
     
     if (view.didFinishAutoLayoutBlock) {
         view.didFinishAutoLayoutBlock(view.frame);
+    }
+    
+    if (view.sd_bottomViewsArray.count) {
+        [view layoutSubviews];
     }
     
     CGFloat cornerRadius = view.layer.cornerRadius;

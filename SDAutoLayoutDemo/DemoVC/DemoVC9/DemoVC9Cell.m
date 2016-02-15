@@ -134,6 +134,8 @@ const CGFloat maxContentLabelHeight = 54;
     
     _iconView.image = [UIImage imageNamed:model.iconName];
     _nameLable.text = model.name;
+    // 防止单行文本label在重用时宽度计算不准的问题
+    [_nameLable sizeToFit];
     _contentLabel.text = model.content;
     _picContainerView.picPathStringsArray = model.picNamesArray;
     
@@ -142,8 +144,10 @@ const CGFloat maxContentLabelHeight = 54;
         _moreButton.hidden = NO;
         if (model.isOpening) { // 如果需要展开
             _contentLabel.sd_layout.maxHeightIs(MAXFLOAT);
+            [_moreButton setTitle:@"收起文字" forState:UIControlStateNormal];
         } else {
             _contentLabel.sd_layout.maxHeightIs(60);
+            [_moreButton setTitle:@"显示全部" forState:UIControlStateNormal];
         }
     } else {
         _moreButton.sd_layout.heightIs(0);

@@ -1,5 +1,6 @@
 # SDAutoLayout（一行代码搞定自动布局！）
-### QQ交流群：497140713（一群）519489682（二群）
+
+### QQ交流群：519489682（已满）497140713
 
 ☆☆ SDAutoLayout 基础版视频教程：http://www.letv.com/ptv/vplay/24038772.html ☆☆
 
@@ -8,10 +9,9 @@
 
 
 
-
 一行代码搞定自动布局！致力于做最简单易用的Autolayout库。The most easy way for autolayout.
 
-支持pod：  pod 'SDAutoLayout', '~> 1.3'
+支持pod：  pod 'SDAutoLayout', '~> 1.31'
 
 ## 更新记录：
 
